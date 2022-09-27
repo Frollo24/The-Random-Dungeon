@@ -1,0 +1,12 @@
+# Directories
+/bin/
+/int/
+
+#Visual Studio Directories
+.vs
+
+#Visual Studio Files
+
+*.sln
+*.vcxproj
+*.user
