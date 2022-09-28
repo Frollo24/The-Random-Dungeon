@@ -16,9 +16,15 @@
     <ClInclude Include="src\TRDEngine\Core\EntryPoint.h">
       <Filter>TRDEngine\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\TRDEngine\Core\Log.h">
+      <Filter>TRDEngine\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\TRDEngine\Core\Application.cpp">
+      <Filter>TRDEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TRDEngine\Core\Log.cpp">
       <Filter>TRDEngine\Core</Filter>
     </ClCompile>
   </ItemGroup>
