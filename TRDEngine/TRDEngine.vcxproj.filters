@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="TRDEngine">
+      <UniqueIdentifier>{65B574F3-D11F-296A-1A5E-DA0F860707BF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TRDEngine\Core">
+      <UniqueIdentifier>{DD00C060-C9CE-B366-B262-248D9ECF8FCB}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\TRDEngine.h" />
+    <ClInclude Include="src\TRDEngine\Core\Application.h">
+      <Filter>TRDEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TRDEngine\Core\EntryPoint.h">
+      <Filter>TRDEngine\Core</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\TRDEngine\Core\Application.cpp">
+      <Filter>TRDEngine\Core</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
