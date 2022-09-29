@@ -9,10 +9,12 @@ namespace TRDEngine {
 	void Log::Init(LogLevel level)
 	{
 		m_Level = level;
+		TRD_LOGWARN("Initialized Log!");
 	}
 
 	void Log::Shutdown()
 	{
+		TRD_LOGWARN("Shutdown Log!");
 	}
 
 	void Log::LogMessage(LogLevel level, const char* message, ...)

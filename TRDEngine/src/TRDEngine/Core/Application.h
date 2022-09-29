@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Base.h"
+#include "TRDEngine/Window/Window.h"
+
 namespace TRDEngine {
 
 	class Application
@@ -12,6 +15,8 @@ namespace TRDEngine {
 		void Run();
 
 	private:
+		Scope<Window> m_Window;
+
 		static Application* s_Instance;
 		bool m_Running = true;
 	};

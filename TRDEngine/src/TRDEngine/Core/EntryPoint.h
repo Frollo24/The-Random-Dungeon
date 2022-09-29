@@ -7,16 +7,13 @@ namespace TRDEngine {
 
 	int Main(int ArgC, char** ArgV) {
 		Log::Init();
-		TRD_LOGWARN("Initialized Log!");
-		TRD_LOGDEBUG("Var = %i", 5);
-
-		TRD_ASSERT(false, "Assertion test");
-		TRD_VERIFY(false);
+		WindowSystem::Init();
 
 		auto app = TRDEngine::CreateApplication();
 		app->Run();
 		delete app;
 
+		WindowSystem::Shutdown();
 		Log::Shutdown();
 		return 0;
 	}

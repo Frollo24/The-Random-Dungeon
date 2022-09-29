@@ -9,6 +9,8 @@ namespace TRDEngine {
 	{
 		TRD_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
+
+		m_Window = CreateScope<Window>();
 	}
 	Application::~Application()
 	{
@@ -16,6 +18,9 @@ namespace TRDEngine {
 	}
 	void Application::Run()
 	{
-		while (m_Running);
+		while (m_Running) {
+			m_Window->OnUpdate();
+			m_Running = !m_Window->ShouldClose();
+		}
 	}
 }

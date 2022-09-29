@@ -10,6 +10,9 @@
     <Filter Include="TRDEngine\Debug">
       <UniqueIdentifier>{9B77CC78-0703-3A3D-1014-BD317C1E963D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TRDEngine\Window">
+      <UniqueIdentifier>{AC1EFCBE-9817-1B11-C149-0096ADA1FA1C}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TRDEngine.h" />
@@ -19,14 +22,26 @@
     <ClInclude Include="src\TRDEngine\Core\Assert.h">
       <Filter>TRDEngine\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\TRDEngine\Core\Base.h">
+      <Filter>TRDEngine\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\TRDEngine\Core\EntryPoint.h">
       <Filter>TRDEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\TRDEngine\Core\Log.h">
       <Filter>TRDEngine\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\TRDEngine\Core\Memory.h">
+      <Filter>TRDEngine\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\TRDEngine\Debug\Debug.h">
       <Filter>TRDEngine\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TRDEngine\Window\Window.h">
+      <Filter>TRDEngine\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TRDEngine\Window\WindowSystem.h">
+      <Filter>TRDEngine\Window</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -35,6 +50,12 @@
     </ClCompile>
     <ClCompile Include="src\TRDEngine\Core\Log.cpp">
       <Filter>TRDEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TRDEngine\Window\Window.cpp">
+      <Filter>TRDEngine\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TRDEngine\Window\WindowSystem.cpp">
+      <Filter>TRDEngine\Window</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -14,7 +14,14 @@ project "TRDEngine"
 
 	includedirs
 	{
-		"src"
+		"src",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "configurations:Debug"
