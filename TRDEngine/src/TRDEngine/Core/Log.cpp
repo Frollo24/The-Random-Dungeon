@@ -52,7 +52,7 @@ namespace TRDEngine {
 			printf("\033[0m\n");
 			break;
 		case TRDEngine::LogLevel::Fatal:
-			printf("\033[41m");
+			printf("\033[41m\033[1m");
 			printf("[TRD ENGINE] ");
 			vprintf(message, args);
 			printf("\033[0m\n");

@@ -1,10 +1,13 @@
 #include "Application.h"
 
+#include "Assert.h"
+
 namespace TRDEngine {
 	Application* Application::s_Instance = nullptr;
 
 	Application::Application()
 	{
+		TRD_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 	}
 	Application::~Application()
@@ -13,6 +16,6 @@ namespace TRDEngine {
 	}
 	void Application::Run()
 	{
-		while (true);
+		while (m_Running);
 	}
 }

@@ -7,10 +7,16 @@
     <Filter Include="TRDEngine\Core">
       <UniqueIdentifier>{DD00C060-C9CE-B366-B262-248D9ECF8FCB}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TRDEngine\Debug">
+      <UniqueIdentifier>{9B77CC78-0703-3A3D-1014-BD317C1E963D}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TRDEngine.h" />
     <ClInclude Include="src\TRDEngine\Core\Application.h">
+      <Filter>TRDEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TRDEngine\Core\Assert.h">
       <Filter>TRDEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\TRDEngine\Core\EntryPoint.h">
@@ -18,6 +24,9 @@
     </ClInclude>
     <ClInclude Include="src\TRDEngine\Core\Log.h">
       <Filter>TRDEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TRDEngine\Debug\Debug.h">
+      <Filter>TRDEngine\Debug</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
