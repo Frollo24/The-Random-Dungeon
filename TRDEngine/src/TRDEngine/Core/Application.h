@@ -1,7 +1,10 @@
 #pragma once
 
 #include "Base.h"
+#include "Input.h"
 #include "TRDEngine/Window/Window.h"
+#include "TRDEngine/Events/Event.h"
+#include "TRDEngine/Events/WindowEvent.h"
 
 namespace TRDEngine {
 
@@ -13,6 +16,12 @@ namespace TRDEngine {
 		inline static Application& Instance() { return *s_Instance; }
 
 		void Run();
+		void OnEvent(Event& e);
+
+		Window& GetWindow() { return *m_Window; }
+
+	private:
+		bool OnWindowClose(WindowCloseEvent& e);
 
 	private:
 		Scope<Window> m_Window;
