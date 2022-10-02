@@ -1,10 +1,8 @@
 #pragma once
 #pragma warning (disable : 26812) // Enum type is unscoped warning
 
+#include "TRDPCH.h"
 #include "TRDEngine/Core/Base.h"
-
-#include <functional>
-#include <sstream>
 
 namespace TRDEngine {
 

@@ -21,7 +21,7 @@ namespace TRDEngine {
 		}
 
 		EVENT_CLASS_TYPE(WindowResize)
-		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+		EVENT_CLASS_CATEGORY(EventCategoryWindow)
 	private:
 		unsigned int m_Width, m_Height;
 	};
@@ -35,7 +35,7 @@ namespace TRDEngine {
 		const std::string& GetTitle() const { return m_Title; }
 
 		EVENT_CLASS_TYPE(WindowClose)
-		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+		EVENT_CLASS_CATEGORY(EventCategoryWindow)
 	private:
 		std::string m_Title;
 	};

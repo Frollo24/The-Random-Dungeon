@@ -1,9 +1,9 @@
 #pragma once
 
+#include "TRDPCH.h"
 #include "TRDEngine/Core/Base.h"
 #include "TRDEngine/Events/Event.h"
 
-#include <functional>
 struct GLFWwindow;
 
 namespace TRDEngine {

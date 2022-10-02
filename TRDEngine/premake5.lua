@@ -6,6 +6,9 @@ project "TRDEngine"
 	targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("%{wks.location}/int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "TRDPCH.h"
+	pchsource "src/TRDPCH.cpp"
+
 	files
 	{
 		"src/**.h",

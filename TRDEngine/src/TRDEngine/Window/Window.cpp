@@ -1,3 +1,4 @@
+#include "TRDPCH.h"
 #include "Window.h"
 
 #include "TRDEngine/Events/WindowEvent.h"

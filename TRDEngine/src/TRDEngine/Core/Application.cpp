@@ -1,3 +1,4 @@
+#include "TRDPCH.h"
 #include "Application.h"
 
 #include "Assert.h"

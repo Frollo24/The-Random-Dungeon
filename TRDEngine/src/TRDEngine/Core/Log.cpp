@@ -1,3 +1,4 @@
+#include "TRDPCH.h"
 #include "Log.h"
 #include <stdio.h>
 #include <stdarg.h>
