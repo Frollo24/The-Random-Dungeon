@@ -4,8 +4,10 @@
 #include "TRDEngine/Core/Application.h"
 #include "TRDEngine/Core/Assert.h"
 #include "TRDEngine/Core/Base.h"
+#include "TRDEngine/Core/Layer.h"
 #include "TRDEngine/Core/Log.h"
 #include "TRDEngine/Core/Memory.h"
+#include "TRDEngine/Core/Time.h"
 
 // Input polling
 #include "TRDEngine/Core/Input.h"

@@ -2,6 +2,8 @@
 
 #include "Base.h"
 #include "Input.h"
+#include "LayerStack.h"
+#include "Time.h"
 #include "TRDEngine/Window/Window.h"
 #include "TRDEngine/Events/Event.h"
 #include "TRDEngine/Events/WindowEvent.h"
@@ -18,6 +20,9 @@ namespace TRDEngine {
 		void Run();
 		void OnEvent(Event& e);
 
+		void PushLayer(Layer* layer);
+		void PushOverlay(Layer* overlay);
+
 		Window& GetWindow() { return *m_Window; }
 
 	private:
@@ -25,9 +30,11 @@ namespace TRDEngine {
 
 	private:
 		Scope<Window> m_Window;
+		LayerStack m_LayerStack;
 
 		static Application* s_Instance;
 		bool m_Running = true;
+		float m_LastFrameTime = 0.0f;
 	};
 
 	// To be defined by client

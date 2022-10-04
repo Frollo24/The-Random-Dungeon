@@ -4,6 +4,7 @@
 #include "Assert.h"
 
 namespace TRDEngine {
+
 	Application* Application::s_Instance = nullptr;
 
 	Application::Application()
@@ -22,14 +23,17 @@ namespace TRDEngine {
 
 	void Application::Run()
 	{
-		while (m_Running) {
+		while (m_Running)
+		{
+			float time = Window::GetTime();
+			Timestep timestep = time - m_LastFrameTime;
+			m_LastFrameTime = time;
 
-			if (Input::IsKeyDown(KeyCode::W)) {
-				TRD_LOGINFO("W key down!");
-			}
-			if (Input::IsKeyUp(KeyCode::W)) {
-				TRD_LOGINFO("W key up!");
-			}
+			Time::s_TotalTime = time;
+			Time::s_DeltaTime = timestep;
+
+			for (Layer* layer : m_LayerStack)
+				layer->OnUpdate();
 
 			Input::OnUpdate();
 			m_Window->OnUpdate();
@@ -39,10 +43,24 @@ namespace TRDEngine {
 
 	void Application::OnEvent(Event& e)
 	{
-		TRD_LOGTRACE("%s", e.ToString().c_str());
-
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(TRD_BIND_EVENT_FN(Application::OnWindowClose));
+
+		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it) {
+			if (e.Handled())
+				break;
+			(*it)->OnEvent(e);
+		}
+	}
+
+	void Application::PushLayer(Layer* layer)
+	{
+		m_LayerStack.PushLayer(layer);
+	}
+
+	void Application::PushOverlay(Layer* overlay)
+	{
+		m_LayerStack.PushOverlay(overlay);
 	}
 
 	bool Application::OnWindowClose(WindowCloseEvent& e)

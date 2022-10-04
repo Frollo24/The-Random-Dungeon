@@ -44,6 +44,11 @@ namespace TRDEngine {
 		return glfwWindowShouldClose(m_Window);
 	}
 
+	float Window::GetTime()
+	{
+		return (float)glfwGetTime();
+	}
+
 	void Window::Init(const WindowProps& props)
 	{
 		m_Data.Title = props.Title;

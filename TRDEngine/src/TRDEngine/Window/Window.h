@@ -37,6 +37,7 @@ namespace TRDEngine {
 
 		inline GLFWwindow* GetNativeWindow() const { return m_Window; }
 		bool ShouldClose() const;
+		static float GetTime();
 
 	private:
 		void Init(const WindowProps& props);
