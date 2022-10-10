@@ -18,7 +18,8 @@ void GameLayer::OnDetach()
 
 void GameLayer::OnUpdate()
 {
-	TRD_LOGINFO("GameLayer::Update - %f seconds", (float)Time::DeltaTime);
+	if (Input::IsKeyDown(KeyCode::T))
+		TRD_LOGINFO("GameLayer::Update - %f seconds", (float)Time::DeltaTime);
 }
 
 void GameLayer::OnEvent(TRDEngine::Event& e)

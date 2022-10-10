@@ -3,6 +3,7 @@
 #include "TRDPCH.h"
 #include "TRDEngine/Core/Base.h"
 #include "TRDEngine/Events/Event.h"
+#include "TRDEngine/Renderer/GraphicsContext.h"
 
 struct GLFWwindow;
 
@@ -45,6 +46,7 @@ namespace TRDEngine {
 		void SetWindowEventCallbacks();
 
 		GLFWwindow* m_Window;
+		Scope<GraphicsContext> m_Context;
 
 		struct WindowData
 		{

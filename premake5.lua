@@ -15,6 +15,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.architecture}"
 
 group "Dependencies"
 	include "TRDEngine/vendor/GLFW"
+	include "TRDEngine/vendor/Glad"
 group ""
 
 include "TRDEngine"

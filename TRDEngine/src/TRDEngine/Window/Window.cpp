@@ -27,7 +27,7 @@ namespace TRDEngine {
 	void Window::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void Window::SetVSync(bool enabled)
@@ -57,9 +57,16 @@ namespace TRDEngine {
 
 		glfwSetErrorCallback(GLFWErrorCallback);
 
+		glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
 		TRD_LOGINFO("Creating window \"%s\" (%u, %u)", props.Title.c_str(), props.Width, props.Height);
 		m_Window = glfwCreateWindow((int)m_Data.Width, (int)m_Data.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window); // TODO refactor
+		m_Context = CreateScope<GraphicsContext>(m_Window);
+		m_Context->Init();
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 

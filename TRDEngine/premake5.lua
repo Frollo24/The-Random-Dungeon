@@ -18,13 +18,20 @@ project "TRDEngine"
 	includedirs
 	{
 		"src",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
+	}
+
+	defines
+	{
+		"GLFW_INCLUDE_NONE"
 	}
 
 	filter "configurations:Debug"
