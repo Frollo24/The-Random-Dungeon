@@ -23,9 +23,16 @@
 #include "TRDEngine/Events/KeyEvent.h"
 #include "TRDEngine/Events/WindowEvent.h"
 
+// Renderer
+#include "TRDEngine/Renderer/Renderer.h"
+#include "TRDEngine/Renderer/RenderCommand.h"
+
 // Window system
 #include "TRDEngine/Window/WindowSystem.h"
 #include "TRDEngine/Window/Window.h"
+
+// Utils
+#include "TRDEngine/Utils/Color.h"
 
 #ifdef TRD_ENTRY_POINT
 // Entry Point

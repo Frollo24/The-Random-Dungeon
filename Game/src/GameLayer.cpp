@@ -20,6 +20,12 @@ void GameLayer::OnUpdate()
 {
 	if (Input::IsKeyDown(KeyCode::T))
 		TRD_LOGINFO("GameLayer::Update - %f seconds", (float)Time::DeltaTime);
+
+	Renderer::BeginScene();
+	{
+		TRD_LOGDEBUG("Rendering scene...");
+	}
+	Renderer::EndScene();
 }
 
 void GameLayer::OnEvent(TRDEngine::Event& e)

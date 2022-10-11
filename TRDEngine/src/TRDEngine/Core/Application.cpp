@@ -2,9 +2,10 @@
 #include "Application.h"
 
 #include "Assert.h"
+#include "Input.h"
+#include "Time.h"
 
-// TEMPORARY
-#include <glad/glad.h>
+#include "TRDEngine/Renderer/Renderer.h"
 
 namespace TRDEngine {
 
@@ -17,6 +18,8 @@ namespace TRDEngine {
 
 		m_Window = CreateScope<Window>();
 		m_Window->SetEventCallback(TRD_BIND_EVENT_FN(Application::OnEvent));
+
+		Renderer::Init();
 	}
 
 	Application::~Application()
@@ -26,12 +29,8 @@ namespace TRDEngine {
 
 	void Application::Run()
 	{
-		glClearColor(0.7f, 0.2f, 0.9f, 1.0f);
-
 		while (m_Running)
 		{
-			glClear(GL_COLOR_BUFFER_BIT);
-
 			float time = Window::GetTime();
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
