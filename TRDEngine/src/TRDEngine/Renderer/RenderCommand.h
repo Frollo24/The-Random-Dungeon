@@ -11,6 +11,8 @@ namespace TRDEngine {
 		static void Init();
 		static void SetClearColor(const Color& color);
 		static void Clear();
+
+		static void DrawIndexed(uint32_t indexCount);
 	};
 
 }

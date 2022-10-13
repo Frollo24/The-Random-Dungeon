@@ -14,7 +14,8 @@ project "Game"
 
 	includedirs
 	{
-		"%{wks.location}/TRDEngine/src"
+		"%{wks.location}/TRDEngine/src",
+		"%{wks.location}/TRDEngine/vendor/glm",
 	}
 
 	links

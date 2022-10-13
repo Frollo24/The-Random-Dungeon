@@ -46,4 +46,9 @@ namespace TRDEngine {
 		glClear(GL_COLOR_BUFFER_BIT); // TODO refactor
 	}
 
+	void RenderCommand::DrawIndexed(uint32_t indexCount)
+	{
+		glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, nullptr);
+	}
+
 }

@@ -27,4 +27,12 @@ namespace TRDEngine {
 		s_BegunScene = false;
 	}
 
+	void Renderer::Submit(const Ref<VertexArray>& vertexArray, const Ref<IndexBuffer>& indexBuffer, const Ref<Shader>& shader)
+	{
+		vertexArray->Bind();
+		indexBuffer->Bind();
+		shader->Use();
+		RenderCommand::DrawIndexed(indexBuffer->GetCount());
+	}
+
 }

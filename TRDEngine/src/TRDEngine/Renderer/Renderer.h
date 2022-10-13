@@ -1,5 +1,9 @@
 #pragma once
 
+#include "TRDEngine/Renderer/VertexArray.h"
+#include "TRDEngine/Renderer/IndexBuffer.h"
+#include "TRDEngine/Renderer/Shader.h"
+
 namespace TRDEngine {
 
 	class Renderer
@@ -8,6 +12,7 @@ namespace TRDEngine {
 		static void Init();
 		static void BeginScene();
 		static void EndScene();
+		static void Submit(const Ref<VertexArray>& vertexArray, const Ref<IndexBuffer>& indexBuffer, const Ref<Shader>& shader);
 
 	private:
 		static bool s_BegunScene;

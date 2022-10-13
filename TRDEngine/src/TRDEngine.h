@@ -26,6 +26,11 @@
 // Renderer
 #include "TRDEngine/Renderer/Renderer.h"
 #include "TRDEngine/Renderer/RenderCommand.h"
+#include "TRDEngine/Renderer/GraphicsContext.h"
+#include "TRDEngine/Renderer/VertexArray.h"
+#include "TRDEngine/Renderer/VertexBuffer.h"
+#include "TRDEngine/Renderer/IndexBuffer.h"
+#include "TRDEngine/Renderer/Shader.h"
 
 // Window system
 #include "TRDEngine/Window/WindowSystem.h"
