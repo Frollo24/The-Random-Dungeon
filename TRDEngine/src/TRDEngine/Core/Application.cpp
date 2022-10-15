@@ -38,8 +38,13 @@ namespace TRDEngine {
 			Time::s_TotalTime = time;
 			Time::s_DeltaTime = timestep;
 
+			Renderer::BeginScene();
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+
+			for (Layer* layer : m_LayerStack)
+				layer->OnRender();
+			Renderer::EndScene();
 
 			Input::OnUpdate();
 			m_Window->OnUpdate();

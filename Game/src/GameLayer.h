@@ -9,6 +9,7 @@ public:
 
 	virtual void OnAttach() override;
 	virtual void OnDetach() override;
+	virtual void OnRender() override;
 	virtual void OnUpdate() override;
 	virtual void OnEvent(TRDEngine::Event& e) override;
 };

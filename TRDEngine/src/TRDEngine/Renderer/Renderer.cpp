@@ -10,7 +10,7 @@ namespace TRDEngine {
 	void Renderer::Init()
 	{
 		RenderCommand::Init();
-		RenderCommand::SetClearColor(Color(0.7f, 0.2f, 0.9f));
+		RenderCommand::SetClearColor(Color(0.2f, 0.2f, 0.2f));
 	}
 
 	void Renderer::BeginScene()

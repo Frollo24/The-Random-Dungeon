@@ -11,6 +11,7 @@ namespace TRDEngine {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
+		virtual void OnRender() {}
 		virtual void OnUpdate() {}
 		virtual void OnEvent(Event& e) {}
 

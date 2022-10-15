@@ -32,6 +32,14 @@
 #include "TRDEngine/Renderer/IndexBuffer.h"
 #include "TRDEngine/Renderer/Shader.h"
 
+// Scene
+#include "TRDEngine/Scene/Scene.h"
+#include "TRDEngine/Scene/GameObject.h"
+#include "TRDEngine/Scene/Graphics.h"
+
+// Systems
+#include "TRDEngine/Systems/RenderSystem.h"
+
 // Window system
 #include "TRDEngine/Window/WindowSystem.h"
 #include "TRDEngine/Window/Window.h"
