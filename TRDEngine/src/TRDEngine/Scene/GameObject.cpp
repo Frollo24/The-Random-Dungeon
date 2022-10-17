@@ -1,27 +1,25 @@
 #include "TRDPCH.h"
 #include "GameObject.h"
 
+#include "TRDEngine/Systems/TransformSystem.h"
 #include "TRDEngine/Systems/RenderSystem.h"
 
 namespace TRDEngine {
 
     GameObject::GameObject()
     {
+        m_Transform = CreateRef<Transform>();
+        m_Transform->SetGameObject(this);
+        TransformSystem::Register(m_Transform);
+
+        this->Create();
     }
 
     void GameObject::AddGraphics(const Ref<Graphics>& graphics)
     {
         m_Graphics = graphics;
+        m_Graphics->SetGameObject(this);
         RenderSystem::Register(graphics);
-    }
-
-    void GameObject::Create()
-    {
-    }
-
-    void GameObject::Update()
-    {
-        m_Graphics->Update();
     }
 
 }

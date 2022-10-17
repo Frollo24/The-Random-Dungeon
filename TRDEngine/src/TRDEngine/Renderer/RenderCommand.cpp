@@ -34,6 +34,8 @@ namespace TRDEngine {
 
 		glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION, 0, NULL, GL_FALSE);
 #endif
+
+		glEnable(GL_DEPTH_TEST);
 	}
 
 	void RenderCommand::SetClearColor(const Color& color)
@@ -43,7 +45,7 @@ namespace TRDEngine {
 
 	void RenderCommand::Clear()
 	{
-		glClear(GL_COLOR_BUFFER_BIT); // TODO refactor
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // TODO refactor
 	}
 
 	void RenderCommand::DrawIndexed(uint32_t indexCount)

@@ -7,14 +7,16 @@ namespace TRDEngine {
 
 	class Scene {
 	public:
-		Scene(const Ref<GameObject>& gameObject);
+		Scene();
 
 		void Create();
 		void Render();
 		void Update();
 
+		void AddGameObject(const Ref<GameObject>& gameObject);
+
 	private:
-		Ref<GameObject> m_GameObject = nullptr;
+		std::vector<Ref<GameObject>> m_GameObjects{};
 	};
 
 }

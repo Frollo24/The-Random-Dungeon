@@ -2,12 +2,13 @@
 #include "Graphics.h"
 
 #include "TRDEngine/Renderer/Renderer.h"
+#include "TRDEngine/Scene/GameObject.h"
 
 namespace TRDEngine {
 
 	Graphics::Graphics()
 	{
-		// TEMPORARY
+		// TEMPORARY - TODO convert to serialized loading
 		m_VertexArray = CreateRef<VertexArray>();
 
 		float triangleVertices[3 * 3] = {
@@ -37,7 +38,8 @@ namespace TRDEngine {
 
 	void Graphics::Update()
 	{
-		m_Shader->SetColor("u_Color", Color(0.2f, 0.9f, 0.7f));
+		m_Shader->SetColor("u_Color", m_Color);
+		m_Shader->SetMat4("u_Transform", m_GameObject->GetTransform()->GetMatrix());
 	}
 
 }

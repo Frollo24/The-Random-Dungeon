@@ -1,12 +1,12 @@
 #include "TRDPCH.h"
 #include "Scene.h"
 
+#include "TRDEngine/Systems/TransformSystem.h"
 #include "TRDEngine/Systems/RenderSystem.h"
 
 namespace TRDEngine {
 
-	Scene::Scene(const Ref<GameObject>& gameObject)
-		: m_GameObject(gameObject)
+	Scene::Scene()
 	{
 		Create();
 	}
@@ -23,6 +23,16 @@ namespace TRDEngine {
 
 	void Scene::Update()
 	{
+		for (const auto& object : m_GameObjects)
+			object->Update();
+
+		TransformSystem::Update();
 		RenderSystem::Update();
 	}
+
+	void Scene::AddGameObject(const Ref<GameObject>& gameObject)
+	{
+		m_GameObjects.push_back(gameObject);
+	}
+
 }
