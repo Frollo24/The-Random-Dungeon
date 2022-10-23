@@ -7,15 +7,19 @@
 namespace TRDEngine {
 
 	class GameObject;
+	class TransformBuffer;
 
 	class Transform
 	{
 	public:
 		Transform(const glm::mat4& transform = glm::mat4(1.0f));
+		~Transform() { delete m_TransformBuffer; }
 
 		inline void SetGameObject(GameObject* gameObject) { m_GameObject = gameObject; }
 
 		void Translate(const glm::vec3& translation);
+
+		void SetPosition(const glm::vec3& position);
 
 		void Update();
 
@@ -24,6 +28,7 @@ namespace TRDEngine {
 	private:
 		GameObject* m_GameObject = nullptr;
 		glm::mat4 m_Transform;
+		TransformBuffer* m_TransformBuffer = nullptr;
 	};
 
 }

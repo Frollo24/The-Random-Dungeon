@@ -9,16 +9,19 @@ namespace TRDEngine {
 	class GameObject
 	{
 	public:
-		GameObject();
+		GameObject(const std::string& name = "GameObject");
 
 		void AddGraphics(const Ref<Graphics>& graphics);
 
+		inline const std::string& GetName() { return m_Name; }
 		inline const Ref<Transform>& GetTransform() { return m_Transform; }
 
 		virtual void Create() {}
 		virtual void Update() {}
 
 	private:
+		std::string m_Name;
+
 		Ref<Transform> m_Transform = nullptr;
 		Ref<Graphics> m_Graphics = nullptr;
 	};

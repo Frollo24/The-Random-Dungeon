@@ -6,7 +6,8 @@
 
 namespace TRDEngine {
 
-    GameObject::GameObject()
+    GameObject::GameObject(const std::string& name)
+        : m_Name(name)
     {
         m_Transform = CreateRef<Transform>();
         m_Transform->SetGameObject(this);

@@ -1,34 +1,66 @@
 #include "TRDPCH.h"
 #include "Transform.h"
+#include "GameObject.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 
 namespace TRDEngine {
 
-	struct TransformBuffer { // TODO convert to transform command buffer
-		glm::vec3 translation{};
+	struct TransformCommand
+	{
+		virtual glm::mat4 Execute(const glm::mat4& matrix) = 0;
 	};
 
-	static TransformBuffer s_TransformBuffer{};
+	struct TranslateCommand : TransformCommand
+	{
+		TranslateCommand(glm::vec3 translation) : translation{translation} {}
+		glm::vec3 translation{};
+
+		virtual glm::mat4 Execute(const glm::mat4& matrix) override { return glm::translate(matrix, translation); };
+	};
+
+	struct TransformBuffer {
+		std::vector<Ref<TransformCommand>> transformCommands;
+
+		inline void Record(const Ref<TransformCommand>& command) { transformCommands.push_back(command); };
+
+		bool HasRecord() { return !transformCommands.empty(); }
+		void Clear() { transformCommands.clear(); }
+
+		void Flush(glm::mat4& matrix)
+		{
+			for (int i = 0; i < transformCommands.size(); i++)
+				matrix = transformCommands[i]->Execute(matrix);
+
+			Clear();
+		}
+	};
 
 	Transform::Transform(const glm::mat4& transform)
-		: m_Transform(transform)
+		: m_Transform(transform), m_TransformBuffer(new TransformBuffer())
 	{
 
 	}
 
 	void Transform::Translate(const glm::vec3& translation)
 	{
-		s_TransformBuffer.translation += translation;
+		m_TransformBuffer->Record(CreateRef<TranslateCommand>(translation));
+	}
+
+	void Transform::SetPosition(const glm::vec3& position)
+	{
+		m_TransformBuffer->Clear();
+
+		m_Transform = glm::translate(glm::mat4(1.0f), position);
 	}
 
 	void Transform::Update()
 	{
-		if (s_TransformBuffer.translation == glm::vec3(0.0f)) return;
+		if (!m_TransformBuffer->HasRecord()) return;
 
 		TRD_LOGDEBUG("Updating transform!");
-		m_Transform = glm::translate(m_Transform, s_TransformBuffer.translation);
-		s_TransformBuffer.translation = glm::vec3(0.0f);
+		m_TransformBuffer->Flush(m_Transform);
+		m_TransformBuffer->Clear();
 	}
 
 }

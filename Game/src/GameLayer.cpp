@@ -5,22 +5,34 @@ using namespace TRDEngine;
 class TestObject : public GameObject
 {
 public:
+	TestObject(const std::string& name) : GameObject(name) {}
+
 	virtual void Create() override {
 		TRD_LOGWARN("Derived object created!");
 	}
 	virtual void Update() override {
-		GetTransform()->Translate({m_Translation, 0.0f, 0.0f});
+		float movement = m_Translation * Time::DeltaTime;
 
-		m_Translation += m_Offset * Time::DeltaTime;
-		TRD_LOGINFO("%f", m_Translation);
+		if (Input::IsKeyPressed(KeyCode::A))
+			TRD_LOGWARN("Moving object %s", GetName().c_str());
 
-		if (m_Translation <= -m_Bounds || m_Translation >= m_Bounds) {
-			m_Offset = -m_Offset;
-		}
+		if (Input::IsKeyPressed(KeyCode::A))
+			GetTransform()->Translate({ -movement, 0.0f, 0.0f });
+		if (Input::IsKeyPressed(KeyCode::D))
+			GetTransform()->Translate({ movement, 0.0f, 0.0f });
+		if (Input::IsKeyPressed(KeyCode::S))
+			GetTransform()->Translate({ 0.0f, -movement, 0.0f });
+		if (Input::IsKeyPressed(KeyCode::W))
+			GetTransform()->Translate({ 0.0f, movement, 0.0f });
+
+		if (Input::IsKeyDown(KeyCode::F))
+			GetTransform()->SetPosition({ 0.0f, 0.0f, 0.5f });
+		if (Input::IsKeyDown(KeyCode::B))
+			GetTransform()->SetPosition({ 0.0f, 0.0f, -0.5f });
 	}
 
 private:
-	float m_Translation = 0.0f, m_Offset = 0.1f, m_Bounds = 0.025f;
+	float m_Translation = 0.4f;
 };
 
 static Ref<Scene> s_Scene;
@@ -29,19 +41,23 @@ static Ref<TestObject> s_GameObject2;
 
 GameLayer::GameLayer() : Layer("Game Layer")
 {
-	s_GameObject1 = CreateRef<GameObject>();
-	auto graphics1 = CreateRef<Graphics>();
+	/**/
+	s_GameObject1 = CreateRef<GameObject>("GameObject 1");
+	Ref<Graphics> graphics1 = CreateRef<Graphics>();
 	graphics1->SetColor(Color(0.2f, 0.9f, 0.7f));
 	s_GameObject1->AddGraphics(graphics1);
+	//*/
 
-	s_GameObject2 = CreateRef<TestObject>();
-	auto graphics2 = CreateRef<Graphics>();
+	/**/
+	s_GameObject2 = CreateRef<TestObject>("GameObject 2");
+	Ref<Graphics> graphics2 = CreateRef<Graphics>();
 	graphics2->SetColor(Color(0.9f, 0.2f, 0.2f));
 	s_GameObject2->AddGraphics(graphics2);
-	s_GameObject2->GetTransform()->Translate({0.0f, 0.3f, 0.1f});
+	s_GameObject2->GetTransform()->Translate({0.0f, 0.2f, -0.1f});
+	//*/
 
 	s_Scene = CreateRef<Scene>();
-	s_Scene->AddGameObject(s_GameObject1);
+	//s_Scene->AddGameObject(s_GameObject1);
 	s_Scene->AddGameObject(s_GameObject2);
 }
 

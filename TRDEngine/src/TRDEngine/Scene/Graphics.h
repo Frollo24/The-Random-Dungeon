@@ -20,7 +20,7 @@ namespace TRDEngine {
 		void Update();
 
 	private:
-		GameObject* m_GameObject;
+		GameObject* m_GameObject = nullptr;
 		Color m_Color{};
 
 		Ref<VertexArray> m_VertexArray = nullptr;
