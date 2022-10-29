@@ -16,6 +16,8 @@ namespace TRDEngine {
 		inline void SetGameObject(GameObject* gameObject) { m_GameObject = gameObject; }
 		inline void SetColor(const Color& color) { m_Color = color; }
 
+	private:
+		friend class RenderSystem;
 		void Render();
 		void Update();
 

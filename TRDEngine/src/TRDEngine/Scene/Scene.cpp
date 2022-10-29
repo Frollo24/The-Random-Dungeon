@@ -6,6 +6,8 @@
 
 namespace TRDEngine {
 
+	Ref<Camera> Scene::s_ActiveCamera = nullptr;
+
 	Scene::Scene()
 	{
 		Create();

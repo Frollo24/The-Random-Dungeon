@@ -14,7 +14,9 @@ project "TRDEngine"
 		"src/**.h",
 		"src/**.cpp",
 		"vendor/glm/glm/**.hpp",
-		"vendor/glm/glm/**.inl"
+		"vendor/glm/glm/**.inl",
+		"vendor/stb_image/stb_image.h",
+		"vendor/stb_image/stb_image.cpp"
 	}
 
 	includedirs

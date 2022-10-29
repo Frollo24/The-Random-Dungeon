@@ -3,6 +3,7 @@
 
 #include "TRDEngine/Renderer/Renderer.h"
 #include "TRDEngine/Scene/GameObject.h"
+#include "TRDEngine/Scene/Scene.h"
 
 namespace TRDEngine {
 
@@ -12,9 +13,9 @@ namespace TRDEngine {
 		m_VertexArray = CreateRef<VertexArray>();
 
 		float triangleVertices[3 * 3] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.0f,  0.5f, 0.0f
+			-1.5f, -1.5f, 0.0f,
+			 1.5f, -1.5f, 0.0f,
+			 0.0f,  1.5f, 0.0f
 		};
 
 		m_VertexBuffer = CreateRef<VertexBuffer>(sizeof(triangleVertices), triangleVertices);
@@ -40,6 +41,7 @@ namespace TRDEngine {
 	{
 		m_Shader->SetColor("u_Color", m_Color);
 		m_Shader->SetMat4("u_Transform", m_GameObject->GetTransform()->GetMatrix());
+		m_Shader->SetMat4("u_ViewProj", Scene::GetActiveCamera()->GetViewProjMatrix());
 	}
 
 }

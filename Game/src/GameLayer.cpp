@@ -1,5 +1,6 @@
 #include "GameLayer.h"
 
+#include <glm/gtc/matrix_transform.hpp>
 using namespace TRDEngine;
 
 class TestObject : public GameObject
@@ -14,30 +15,34 @@ public:
 		float movement = m_Translation * Time::DeltaTime;
 
 		if (Input::IsKeyPressed(KeyCode::A))
-			TRD_LOGWARN("Moving object %s", GetName().c_str());
-
-		if (Input::IsKeyPressed(KeyCode::A))
 			GetTransform()->Translate({ -movement, 0.0f, 0.0f });
 		if (Input::IsKeyPressed(KeyCode::D))
 			GetTransform()->Translate({ movement, 0.0f, 0.0f });
 		if (Input::IsKeyPressed(KeyCode::S))
-			GetTransform()->Translate({ 0.0f, -movement, 0.0f });
-		if (Input::IsKeyPressed(KeyCode::W))
 			GetTransform()->Translate({ 0.0f, movement, 0.0f });
+		if (Input::IsKeyPressed(KeyCode::W))
+			GetTransform()->Translate({ 0.0f, -movement, 0.0f });
+		if (Input::IsKeyPressed(KeyCode::Q))
+			GetTransform()->Translate({ 0.0f, 0.0f, -movement });
+		if (Input::IsKeyPressed(KeyCode::E))
+			GetTransform()->Translate({ 0.0f, 0.0f, movement });
 
+		/** /
 		if (Input::IsKeyDown(KeyCode::F))
 			GetTransform()->SetPosition({ 0.0f, 0.0f, 0.5f });
 		if (Input::IsKeyDown(KeyCode::B))
 			GetTransform()->SetPosition({ 0.0f, 0.0f, -0.5f });
+		/**/
 	}
 
 private:
-	float m_Translation = 0.4f;
+	float m_Translation = 1.4f;
 };
 
 static Ref<Scene> s_Scene;
 static Ref<GameObject> s_GameObject1;
 static Ref<TestObject> s_GameObject2;
+static Ref<Camera> s_Camera;
 
 GameLayer::GameLayer() : Layer("Game Layer")
 {
@@ -57,8 +62,14 @@ GameLayer::GameLayer() : Layer("Game Layer")
 	//*/
 
 	s_Scene = CreateRef<Scene>();
-	//s_Scene->AddGameObject(s_GameObject1);
+	s_Scene->AddGameObject(s_GameObject1);
 	s_Scene->AddGameObject(s_GameObject2);
+
+	s_Camera = CreateRef<Camera>(
+		glm::lookAt(glm::vec3(0.0f, 0.0f, 5.0f), glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f)),
+		glm::perspective(glm::radians(60.0f), 1.776f, 0.01f, 10.0f)
+	);
+	Scene::SetActiveCamera(s_Camera);
 }
 
 void GameLayer::OnAttach()
