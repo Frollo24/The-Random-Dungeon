@@ -35,9 +35,11 @@
 // Scene
 #include "TRDEngine/Scene/Scene.h"
 #include "TRDEngine/Scene/GameObject.h"
+#include "TRDEngine/Scene/Transform.h"
 #include "TRDEngine/Scene/Graphics.h"
 
 // Systems
+#include "TRDEngine/Systems/TransformSystem.h"
 #include "TRDEngine/Systems/RenderSystem.h"
 
 // Window system

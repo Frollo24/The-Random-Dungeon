@@ -7,41 +7,34 @@
 
 namespace TRDEngine {
 
-	Graphics::Graphics()
+	Graphics::Graphics(const std::string& filepath)
 	{
-		// TEMPORARY - TODO convert to serialized loading
-		m_VertexArray = CreateRef<VertexArray>();
+		m_Model = CreateRef<Model>(filepath);
 
-		float triangleVertices[3 * 3] = {
-			-1.5f, -1.5f, 0.0f,
-			 1.5f, -1.5f, 0.0f,
-			 0.0f,  1.5f, 0.0f
-		};
-
-		m_VertexBuffer = CreateRef<VertexBuffer>(sizeof(triangleVertices), triangleVertices);
-		BufferLayout triangleBufferLayout = {
-			{ShaderDataType::Float3, "a_Position"},
-		};
-		m_VertexBuffer->SetLayout(triangleBufferLayout);
-		m_VertexArray->AddVertexBuffer(m_VertexBuffer);
-
-		unsigned int triangleIndices[3] = { 0, 1, 2 };
-		m_IndexBuffer = CreateRef<IndexBuffer>(3, triangleIndices);
-		m_VertexArray->SetIndexBuffer(m_IndexBuffer);
-
-		m_Shader = CreateRef<Shader>("assets/shaders/Test.glsl");
+		//auto shader = CreateRef<Shader>("assets/shaders/Test.glsl");
+		auto shader = CreateRef<Shader>("assets/shaders/BlinnPhong.glsl");
+		m_Material = CreateRef<Material>(shader, m_Color);
 	}
 
 	void Graphics::Render()
 	{
-		Renderer::Submit(m_VertexArray, m_IndexBuffer, m_Shader);
+		Renderer::Submit(m_Model->GetVertexArray(), m_Model->GetIndexBuffer(), m_Material->GetShader());
 	}
 
 	void Graphics::Update()
 	{
-		m_Shader->SetColor("u_Color", m_Color);
-		m_Shader->SetMat4("u_Transform", m_GameObject->GetTransform()->GetMatrix());
-		m_Shader->SetMat4("u_ViewProj", Scene::GetActiveCamera()->GetViewProjMatrix());
+		auto& shader = m_Material->GetShader();
+		auto& transform = m_GameObject->GetTransform()->GetMatrix();
+
+		shader->SetMat4("u_Transform", transform);
+		shader->SetMat4("u_ViewProj", Scene::GetActiveCamera()->GetViewProjMatrix());
+		shader->SetMat4("u_Normal", glm::inverse(glm::transpose(transform)));
+
+		shader->SetColor("u_Material.color", m_Color);
+		shader->SetInt("u_Material.shininess", 3);
+
+		shader->SetFloat3("u_ViewPos", glm::vec3(0.0f, 0.0f, 5.0f));
+
 	}
 
 }

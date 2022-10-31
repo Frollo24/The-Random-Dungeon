@@ -18,6 +18,8 @@ namespace TRDEngine {
 		inline void SetGameObject(GameObject* gameObject) { m_GameObject = gameObject; }
 
 		void Translate(const glm::vec3& translation);
+		void Scale(const glm::vec3& scale);
+
 		void SetPosition(const glm::vec3& position);
 
 

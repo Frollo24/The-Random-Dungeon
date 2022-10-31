@@ -48,17 +48,19 @@ GameLayer::GameLayer() : Layer("Game Layer")
 {
 	/**/
 	s_GameObject1 = CreateRef<GameObject>("GameObject 1");
-	Ref<Graphics> graphics1 = CreateRef<Graphics>();
-	graphics1->SetColor(Color(0.2f, 0.9f, 0.7f));
+	Ref<Graphics> graphics1 = CreateRef<Graphics>("assets/models/Skeleton.obj");
+	graphics1->SetColor(Color(0.2f, 0.7f, 0.9f));
 	s_GameObject1->AddGraphics(graphics1);
+	s_GameObject1->GetTransform()->Scale({0.5f, 0.5f, 0.5f});
 	//*/
 
 	/**/
 	s_GameObject2 = CreateRef<TestObject>("GameObject 2");
-	Ref<Graphics> graphics2 = CreateRef<Graphics>();
-	graphics2->SetColor(Color(0.9f, 0.2f, 0.2f));
+	Ref<Graphics> graphics2 = CreateRef<Graphics>("assets/models/Star.obj");
+	graphics2->SetColor(Color(0.9f, 0.8f, 0.2f));
 	s_GameObject2->AddGraphics(graphics2);
 	s_GameObject2->GetTransform()->Translate({0.0f, 0.2f, -0.1f});
+	s_GameObject2->GetTransform()->Scale({0.75f, 0.75f, 0.75f});
 	//*/
 
 	s_Scene = CreateRef<Scene>();
@@ -67,7 +69,7 @@ GameLayer::GameLayer() : Layer("Game Layer")
 
 	s_Camera = CreateRef<Camera>(
 		glm::lookAt(glm::vec3(0.0f, 0.0f, 5.0f), glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f)),
-		glm::perspective(glm::radians(60.0f), 1.776f, 0.01f, 10.0f)
+		glm::perspective(glm::radians(60.0f), (16.0f / 9.0f), 0.01f, 10.0f)
 	);
 	Scene::SetActiveCamera(s_Camera);
 }

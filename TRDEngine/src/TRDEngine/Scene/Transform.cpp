@@ -19,6 +19,14 @@ namespace TRDEngine {
 		virtual glm::mat4 Execute(const glm::mat4& matrix) override { return glm::translate(matrix, translation); };
 	};
 
+	struct ScaleCommand : TransformCommand
+	{
+		ScaleCommand(glm::vec3 scale) : scale{scale} {}
+		glm::vec3 scale{};
+
+		virtual glm::mat4 Execute(const glm::mat4& matrix) override { return glm::scale(matrix, scale); };
+	};
+
 	struct TransformBuffer {
 		std::vector<Ref<TransformCommand>> transformCommands;
 
@@ -45,6 +53,11 @@ namespace TRDEngine {
 	void Transform::Translate(const glm::vec3& translation)
 	{
 		m_TransformBuffer->Record(CreateRef<TranslateCommand>(translation));
+	}
+
+	void Transform::Scale(const glm::vec3& scale)
+	{
+		m_TransformBuffer->Record(CreateRef<ScaleCommand>(scale));
 	}
 
 	void Transform::SetPosition(const glm::vec3& position)

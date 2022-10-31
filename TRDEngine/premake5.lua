@@ -16,12 +16,16 @@ project "TRDEngine"
 		"vendor/glm/glm/**.hpp",
 		"vendor/glm/glm/**.inl",
 		"vendor/stb_image/stb_image.h",
-		"vendor/stb_image/stb_image.cpp"
+		"vendor/stb_image/stb_image.cpp",
+		"vendor/tiny_obj_loader/tiny_obj_loader.h",
+		"vendor/tiny_obj_loader/tiny_obj_loader.cpp"
 	}
 
 	includedirs
 	{
 		"src",
+		"vendor/stb_image",
+		"vendor/tiny_obj_loader",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.glm}"
