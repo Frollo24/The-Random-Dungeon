@@ -6,6 +6,7 @@
 #include "Time.h"
 
 #include "TRDEngine/Renderer/Renderer.h"
+#include "TRDEngine/Renderer/RenderCommand.h"
 
 namespace TRDEngine {
 
@@ -56,6 +57,7 @@ namespace TRDEngine {
 	{
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(TRD_BIND_EVENT_FN(Application::OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(TRD_BIND_EVENT_FN(Application::OnWindowResize));
 
 		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it) {
 			if (e.Handled())
@@ -77,6 +79,12 @@ namespace TRDEngine {
 	bool Application::OnWindowClose(WindowCloseEvent& e)
 	{
 		TRD_LOGINFO("Window \"%s\" closed", e.GetTitle().c_str());
+		return true;
+	}
+
+	bool Application::OnWindowResize(WindowResizeEvent& e)
+	{
+		RenderCommand::SetViewport(0, 0, e.GetWidth(), e.GetHeight());
 		return true;
 	}
 }
