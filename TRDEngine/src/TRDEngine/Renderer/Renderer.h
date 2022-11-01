@@ -3,6 +3,7 @@
 #include "TRDEngine/Renderer/VertexArray.h"
 #include "TRDEngine/Renderer/IndexBuffer.h"
 #include "TRDEngine/Renderer/Shader.h"
+#include "TRDEngine/Renderer/Texture.h"
 
 namespace TRDEngine {
 

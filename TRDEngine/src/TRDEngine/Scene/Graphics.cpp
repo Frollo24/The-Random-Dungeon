@@ -30,6 +30,7 @@ namespace TRDEngine {
 		shader->SetMat4("u_Normal", glm::inverse(glm::transpose(transform)));
 
 		shader->SetColor("u_Material.color", m_Material->GetColor());
+		shader->SetInt("u_Material.texture", m_Material->GetTexture() ? 1 : 0);
 		shader->SetInt("u_Material.shininess", m_Material->GetGlossiness());
 
 		shader->SetFloat3("u_ViewPos", glm::vec3(0.0f, 0.0f, 5.0f));

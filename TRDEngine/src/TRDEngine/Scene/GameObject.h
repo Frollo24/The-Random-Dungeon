@@ -15,6 +15,7 @@ namespace TRDEngine {
 
 		inline const std::string& GetName() { return m_Name; }
 		inline const Ref<Transform>& GetTransform() { return m_Transform; }
+		inline const Ref<Graphics>& GetGraphics() { return m_Graphics; }
 
 		virtual void Create() {}
 		virtual void Update() {}

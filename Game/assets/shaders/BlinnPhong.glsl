@@ -34,6 +34,7 @@ uniform vec3 u_ViewPos;
 
 uniform struct Material{
     vec4 color;
+    sampler2D texture;
     int shininess;
 } u_Material;
 
@@ -69,7 +70,7 @@ void main() {
     light.intensity = 1.0;
 
     vec3 result = vec3(0.0);
-    result += calcDirLight(light, u_Material.color.rgb, normal, viewDir);
+    result += calcDirLight(light, u_Material.color.rgb * texture(u_Material.texture, v_TexCoord).rgb, normal, viewDir);
 
     o_Color = vec4(result, 1.0);
 }

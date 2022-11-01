@@ -10,6 +10,8 @@ public:
 
 	virtual void Create() override {
 		TRD_LOGWARN("Derived object created!");
+
+		m_Material = GetGraphics()->GetMaterial();
 	}
 	virtual void Update() override {
 		float movement = m_Translation * Time::DeltaTime;
@@ -19,29 +21,26 @@ public:
 		if (Input::IsKeyPressed(KeyCode::D))
 			GetTransform()->Translate({ movement, 0.0f, 0.0f });
 		if (Input::IsKeyPressed(KeyCode::S))
-			GetTransform()->Translate({ 0.0f, movement, 0.0f });
-		if (Input::IsKeyPressed(KeyCode::W))
 			GetTransform()->Translate({ 0.0f, -movement, 0.0f });
+		if (Input::IsKeyPressed(KeyCode::W))
+			GetTransform()->Translate({ 0.0f, movement, 0.0f });
 		if (Input::IsKeyPressed(KeyCode::Q))
 			GetTransform()->Translate({ 0.0f, 0.0f, -movement });
 		if (Input::IsKeyPressed(KeyCode::E))
 			GetTransform()->Translate({ 0.0f, 0.0f, movement });
 
-		/** /
-		if (Input::IsKeyDown(KeyCode::F))
-			GetTransform()->SetPosition({ 0.0f, 0.0f, 0.5f });
-		if (Input::IsKeyDown(KeyCode::B))
-			GetTransform()->SetPosition({ 0.0f, 0.0f, -0.5f });
-		/**/
+		m_Material->SetColor(Color(1.0f, sin(Time::TotalTime), cos(2 * Time::TotalTime)));
 	}
 
 private:
 	float m_Translation = 1.4f;
+	Ref<Material> m_Material = nullptr;
 };
 
 static Ref<Scene> s_Scene;
 static Ref<GameObject> s_GameObject1;
-static Ref<TestObject> s_GameObject2;
+static Ref<GameObject> s_GameObject2;
+static Ref<GameObject> s_GameObject3;
 static Ref<Camera> s_Camera;
 
 GameLayer::GameLayer() : Layer("Game Layer")
@@ -55,7 +54,7 @@ GameLayer::GameLayer() : Layer("Game Layer")
 	//*/
 
 	/**/
-	s_GameObject2 = CreateRef<TestObject>("GameObject 2");
+	s_GameObject2 = CreateRef<GameObject>("GameObject 2");
 	Ref<Graphics> graphics2 = CreateRef<Graphics>("assets/models/Star.obj");
 	graphics2->GetMaterial()->SetColor(Color(0.9f, 0.8f, 0.2f));
 	s_GameObject2->AddGraphics(graphics2);
@@ -63,9 +62,21 @@ GameLayer::GameLayer() : Layer("Game Layer")
 	s_GameObject2->GetTransform()->Scale({0.75f, 0.75f, 0.75f});
 	//*/
 
+	/**/
+	s_GameObject3 = CreateRef<TestObject>("GameObject 3");
+	Ref<Graphics> graphics3 = CreateRef<Graphics>("assets/models/Sphere.obj");
+	graphics3->GetMaterial()->SetColor(Color(1.0f, 0.0f, 0.0f));
+	auto texture = CreateRef<Texture2D>("assets/textures/texture-grass.jpg");
+	texture->Bind(1);
+	graphics3->GetMaterial()->SetTexture(texture);
+	s_GameObject3->AddGraphics(graphics3);
+	s_GameObject3->GetTransform()->Translate({ 3.5f, 0.2f, 0.0f });
+	//*/
+
 	s_Scene = CreateRef<Scene>();
 	s_Scene->AddGameObject(s_GameObject1);
 	s_Scene->AddGameObject(s_GameObject2);
+	s_Scene->AddGameObject(s_GameObject3);
 
 	s_Camera = CreateRef<Camera>(
 		glm::lookAt(glm::vec3(0.0f, 0.0f, 5.0f), glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f)),

@@ -12,8 +12,6 @@ namespace TRDEngine {
         m_Transform = CreateRef<Transform>();
         m_Transform->SetGameObject(this);
         TransformSystem::Register(m_Transform);
-
-        this->Create();
     }
 
     void GameObject::AddGraphics(const Ref<Graphics>& graphics)

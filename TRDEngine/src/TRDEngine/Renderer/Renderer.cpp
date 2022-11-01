@@ -7,10 +7,21 @@ namespace TRDEngine {
 
 	bool Renderer::s_BegunScene = false;
 
+	struct RendererData {
+		Ref<Texture2D> WhiteTexture;
+	};
+
+	static RendererData s_RendererData;
+
 	void Renderer::Init()
 	{
 		RenderCommand::Init();
 		RenderCommand::SetClearColor(Color(0.2f, 0.2f, 0.2f));
+
+		s_RendererData.WhiteTexture = CreateRef<Texture2D>(1, 1);
+		uint32_t whiteTextureData = 0xffffffff;
+		s_RendererData.WhiteTexture->Bind(0);
+		s_RendererData.WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
 	}
 
 	void Renderer::BeginScene()

@@ -34,6 +34,7 @@ namespace TRDEngine {
 
 	void Scene::AddGameObject(const Ref<GameObject>& gameObject)
 	{
+		gameObject->Create();
 		m_GameObjects.push_back(gameObject);
 	}
 

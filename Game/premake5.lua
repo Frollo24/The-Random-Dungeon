@@ -23,6 +23,11 @@ project "Game"
 		"TRDEngine"
 	}
 
+	postbuildcommands
+	{
+		("{COPYDIR} \"%{prj.location}assets\" \"../bin/" .. outputdir .. "/Game/assets" .. "/\"")
+	}
+
 	filter "configurations:Debug"
 		defines "TRD_DEBUG"
 		runtime "Debug"
