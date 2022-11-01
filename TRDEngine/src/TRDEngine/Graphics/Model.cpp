@@ -14,7 +14,8 @@ namespace TRDEngine {
 
 		std::unordered_map<Vertex, uint32_t> uniqueVertices;
 
-		TRD_VERIFY(tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, filepath.c_str()));
+		auto result = tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, filepath.c_str());
+		TRD_VERIFY(result);
 
 		for (const auto& shape : shapes) {
 			for (const auto& index : shape.mesh.indices) {

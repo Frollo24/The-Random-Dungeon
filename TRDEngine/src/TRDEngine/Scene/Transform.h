@@ -7,7 +7,7 @@
 namespace TRDEngine {
 
 	class GameObject;
-	class TransformBuffer;
+	struct TransformBuffer;
 
 	class Transform
 	{

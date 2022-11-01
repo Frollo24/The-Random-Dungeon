@@ -49,7 +49,7 @@ GameLayer::GameLayer() : Layer("Game Layer")
 	/**/
 	s_GameObject1 = CreateRef<GameObject>("GameObject 1");
 	Ref<Graphics> graphics1 = CreateRef<Graphics>("assets/models/Skeleton.obj");
-	graphics1->SetColor(Color(0.2f, 0.7f, 0.9f));
+	graphics1->GetMaterial()->SetColor(Color(0.2f, 0.7f, 0.9f));
 	s_GameObject1->AddGraphics(graphics1);
 	s_GameObject1->GetTransform()->Scale({0.5f, 0.5f, 0.5f});
 	//*/
@@ -57,7 +57,7 @@ GameLayer::GameLayer() : Layer("Game Layer")
 	/**/
 	s_GameObject2 = CreateRef<TestObject>("GameObject 2");
 	Ref<Graphics> graphics2 = CreateRef<Graphics>("assets/models/Star.obj");
-	graphics2->SetColor(Color(0.9f, 0.8f, 0.2f));
+	graphics2->GetMaterial()->SetColor(Color(0.9f, 0.8f, 0.2f));
 	s_GameObject2->AddGraphics(graphics2);
 	s_GameObject2->GetTransform()->Translate({0.0f, 0.2f, -0.1f});
 	s_GameObject2->GetTransform()->Scale({0.75f, 0.75f, 0.75f});

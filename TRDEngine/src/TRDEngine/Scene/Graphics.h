@@ -14,7 +14,9 @@ namespace TRDEngine {
 		Graphics(const std::string& filepath);
 
 		inline void SetGameObject(GameObject* gameObject) { m_GameObject = gameObject; }
-		inline void SetColor(const Color& color) { m_Color = color; }
+
+		inline const Ref<Material>& GetMaterial() { return m_Material; }
+		inline void SetMaterial(const Ref<Material>& material) { m_Material = material; }
 
 	private:
 		friend class RenderSystem;
@@ -23,13 +25,8 @@ namespace TRDEngine {
 
 	private:
 		GameObject* m_GameObject = nullptr;
-		Color m_Color{};
 
 		Ref<Model> m_Model = nullptr;
-		Ref<VertexArray> m_VertexArray = nullptr;
-		Ref<VertexBuffer> m_VertexBuffer = nullptr;
-		Ref<IndexBuffer> m_IndexBuffer = nullptr;
-
 		Ref<Material> m_Material = nullptr;
 	};
 

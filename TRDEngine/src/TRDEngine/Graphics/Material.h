@@ -11,6 +11,12 @@ namespace TRDEngine {
 
 		inline const Ref<Shader>& GetShader() { return m_Shader; }
 
+		inline const Color& GetColor() const { return m_Color; }
+		inline void SetColor(const Color& color) { m_Color = color; }
+
+		inline const uint32_t& GetGlossiness() const { return m_Glossiness; }
+		inline void SetGlossiness(const uint32_t& glossiness) { m_Glossiness = glossiness; }
+
 		void Lerp(const Ref<Material>& startMat, const Ref<Material>& endMat, float t);
 
 	private:
