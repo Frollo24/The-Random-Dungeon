@@ -32,11 +32,7 @@ namespace TRDEngine {
 
 	void Window::SetVSync(bool enabled)
 	{
-		if (enabled)
-			glfwSwapInterval(1);
-		else
-			glfwSwapInterval(0);
-
+		m_Context->SetVSync(enabled);
 		m_Data.VSync = enabled;
 	}
 

@@ -19,7 +19,7 @@ namespace TRDEngine {
 
 		static void LogMessage(LogLevel level, const char* message, ...);
 	private:
-		static LogLevel m_Level;
+		static LogLevel s_Level;
 	};
 
 }

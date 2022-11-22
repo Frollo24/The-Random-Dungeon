@@ -43,9 +43,18 @@ namespace TRDEngine {
 		glClearColor(color.r, color.g, color.b, color.a);
 	}
 
-	void RenderCommand::Clear()
+	void RenderCommand::Clear(ClearFlags flags)
 	{
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // TODO refactor
+		GLbitfield clearMask = 0;
+
+		if ((uint8_t)flags & (uint8_t)ClearFlags::Color)
+			clearMask |= GL_COLOR_BUFFER_BIT;
+		if ((uint8_t)flags & (uint8_t)ClearFlags::Depth)
+			clearMask |= GL_DEPTH_BUFFER_BIT;
+		if ((uint8_t)flags & (uint8_t)ClearFlags::Stencil)
+			clearMask |= GL_STENCIL_BUFFER_BIT;
+
+		glClear(clearMask);
 	}
 
 	void RenderCommand::SetViewport(uint32_t x, uint32_t y, uint32_t width, uint32_t height)

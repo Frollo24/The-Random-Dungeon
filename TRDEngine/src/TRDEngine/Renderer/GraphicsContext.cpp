@@ -26,6 +26,14 @@ namespace TRDEngine {
 		TRD_ASSERT(GLVersion.major > 4 || (GLVersion.major == 4 && GLVersion.minor >= 5), "The Random Dungeon requires at least OpenGL version 4.5!");
 	}
 
+	void GraphicsContext::SetVSync(bool enabled)
+	{
+		if (enabled)
+			glfwSwapInterval(1);
+		else
+			glfwSwapInterval(0);
+	}
+
 	void GraphicsContext::SwapBuffers()
 	{
 		glfwSwapBuffers(m_WindowHandle);

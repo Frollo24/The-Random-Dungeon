@@ -79,7 +79,7 @@ namespace TRDEngine {
 						glVertexArrayAttribBinding(vertexArrayID, m_VertexAttribPointer, 0);
 						glVertexArrayAttribFormat(vertexArrayID, m_VertexAttribPointer, count, ShaderTypeToOpenGLType(element.Type),
 							element.Normalized ? GL_TRUE : GL_FALSE, element.Offset + sizeof(float) * count * i);
-						// glVertexArrayBindingDivisor(vertexArrayID, m_VertexAttribPointer, i);
+						glVertexArrayBindingDivisor(vertexArrayID, m_VertexAttribPointer, 1);
 						m_VertexAttribPointer++;
 					}
 					break;

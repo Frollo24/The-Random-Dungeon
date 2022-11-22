@@ -29,7 +29,8 @@ namespace TRDEngine {
 		TRD_ASSERT(!s_BegunScene, "Scene already has begun! Did you forget to call Renderer::EndScene?");
 		s_BegunScene = true;
 
-		RenderCommand::Clear();
+		ClearFlags flags = (ClearFlags)((uint8_t)ClearFlags::Color | (uint8_t)ClearFlags::Depth);
+		RenderCommand::Clear(flags);
 	}
 
 	void Renderer::EndScene()
@@ -41,7 +42,6 @@ namespace TRDEngine {
 	void Renderer::Submit(const Ref<VertexArray>& vertexArray, const Ref<IndexBuffer>& indexBuffer, const Ref<Shader>& shader)
 	{
 		vertexArray->Bind();
-		indexBuffer->Bind();
 		shader->Use();
 		RenderCommand::DrawIndexed(indexBuffer->GetCount());
 	}

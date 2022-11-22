@@ -11,6 +11,7 @@ namespace TRDEngine {
 	public:
 		GraphicsContext(GLFWwindow* windowHandle);
 		void Init();
+		void SetVSync(bool enabled);
 		void SwapBuffers();
 
 	private:

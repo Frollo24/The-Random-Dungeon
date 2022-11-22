@@ -5,11 +5,11 @@
 
 namespace TRDEngine {
 
-	LogLevel Log::m_Level = LogLevel::Trace;
+	LogLevel Log::s_Level = LogLevel::Trace;
 
 	void Log::Init(LogLevel level)
 	{
-		m_Level = level;
+		s_Level = level;
 		TRD_LOGWARN("Initialized Log!");
 	}
 
@@ -20,6 +20,8 @@ namespace TRDEngine {
 
 	void Log::LogMessage(LogLevel level, const char* message, ...)
 	{
+		if (s_Level > level) return;
+
 		va_list args;
 		va_start(args, message);
 
